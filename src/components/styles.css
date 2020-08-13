@@ -1,0 +1,17 @@
+.container {
+    background-color: "red";
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  pre {
+    background-color: #2e2e2e;
+    padding: 10px;
+    border-radius: 4px;
+    color: white;
+    overflow: scroll;
+    width: 300px;
+  }
