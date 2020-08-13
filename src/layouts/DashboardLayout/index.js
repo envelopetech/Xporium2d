@@ -54,5 +54,4 @@ const DashboardLayout = ({ children }) => {
 DashboardLayout.propTypes = {
   children: PropTypes.node
 };
-
 export default DashboardLayout;

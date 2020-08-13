@@ -6,7 +6,7 @@ import React, {
 import {
   Switch,
   Redirect,
-  Route
+  Route,  
 } from 'react-router-dom';
 import DashboardLayout from 'src/layouts/DashboardLayout';
 import MainLayout from 'src/layouts/MainLayout';
@@ -17,32 +17,39 @@ import GuestGuard from 'src/components/GuestGuard';
 import LobbyView from 'src/views/lobby/LobbyView'
 
 export const renderRoutes = (routes = []) => (
-  <Suspense fallback={<LoadingScreen />}>
-    <Switch>
-      {routes.map((route, i) => {
-        const Guard = route.guard || Fragment;
-        const Layout = route.layout || Fragment;
-        const Component = route.component;
 
-        return (
-          <Route
-            key={i}
-            path={route.path}
-            exact={route.exact}
-            render={(props) => (
-              <Guard>
-                <Layout>
-                  {route.routes
-                    ? renderRoutes(route.routes)
-                    : <Component {...props} />}
-                </Layout>
-              </Guard>
-            )}
-          />
-        );
-      })}
-    </Switch>
-  </Suspense>
+  <Suspense fallback={<LoadingScreen />}>
+    
+      <Switch>
+        {routes.map((route, i) => {
+          const Guard = route.guard || Fragment;
+          const Layout = route.layout || Fragment;
+          const Component = route.component;
+
+          return (
+
+            <Route
+              key={i}
+              path={route.path}
+              exact={route.exact}
+              render={(props) => (
+                <Guard>
+                  <Layout>
+                    {route.routes
+                      ? renderRoutes(route.routes)
+                      : <Component {...props} />}
+                  </Layout>
+                </Guard>
+              )}
+            />
+
+          );
+        })}
+
+      </Switch>
+    
+  </Suspense >
+
 );
 
 const routes = [
@@ -81,7 +88,8 @@ const routes = [
       {
         exact: true,
         path: '/app/lobby',
-        component: LobbyView
+        //component: LobbyView
+        component: lazy(() => import('src/views/lobby/LobbyView'))
       },
       {
         exact: true,
@@ -100,6 +108,21 @@ const routes = [
       },
       {
         exact: true,
+        path: '/app/exhibitor',
+        component: lazy(() => import('src/views/exhibition/ExhibitorView'))
+      },
+      {
+        exact: true,
+        path: '/app/networking',
+        component: lazy(() => import('src/views/network/NetworkView'))
+      },
+      {
+        exact: true,
+        path: '/app/resources',
+        component: lazy(() => import('src/views/resources/ResourceView'))
+      },
+      {
+        exact: true,
         path: '/app/profile',
         component: lazy(() => import('src/views/account/AccountView'))
       },
@@ -108,7 +131,7 @@ const routes = [
       }
     ]
   },
-  
+
   {
     path: '*',
     layout: MainLayout,
@@ -119,7 +142,7 @@ const routes = [
         path: '/',
         component: LoginView
       },
-      
+
       {
         component: () => <Redirect to="/404" />
       }

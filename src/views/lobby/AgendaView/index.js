@@ -15,7 +15,8 @@ import {
     Typography,
     Container,
     makeStyles,
-    CardActions
+    CardActions,
+    Link
 } from '@material-ui/core';
 
 const useStyles = makeStyles({
@@ -73,7 +74,8 @@ export default function AgendaView() {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small" variant="contained" color="primary">Watch Now</Button>
+            <Link>
+                <Button href="https://www.bigmarker.com/xporium/Webinar-13-August3-2020-08-13-03-15-pm?bmid=5bbdac0a0389" target="_blank" size="small" variant="contained" color="primary">Watch Now</Button></Link>
             </CardActions>
         </Card>
     </Container>

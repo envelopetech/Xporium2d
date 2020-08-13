@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router } from 'react-router-dom';
+import { Router, BrowserRouter } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import { create } from 'jss';
 import rtl from 'jss-rtl';
@@ -35,6 +35,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+       <BrowserRouter>
       <StylesProvider jss={jss}>
         <MuiPickersUtilsProvider utils={MomentUtils}>
           <SnackbarProvider
@@ -54,6 +55,7 @@ const App = () => {
           </SnackbarProvider>
         </MuiPickersUtilsProvider>
       </StylesProvider>
+      </BrowserRouter>
     </ThemeProvider>
   );
 };

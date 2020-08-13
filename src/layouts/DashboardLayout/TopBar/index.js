@@ -21,8 +21,9 @@ import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-
-
+import { useParams } from 'react-router';
+import { useHistory } from 'react-router-dom';
+import useAuth from 'src/hooks/useAuth';
 
 const useStyles = makeStyles(theme => ({
     toolbarMargin: {
@@ -50,10 +51,11 @@ const useStyles = makeStyles(theme => ({
      }
 }));
 
-export default function TopBar(props) {
+export default function TopBar(props) {    
     const classes = useStyles();
     const [value, setValue] = useState(0);
-
+    const { user, logout } = useAuth();
+    const history = useHistory();
     const handleChange = (e, value) => {
         setValue(value)
     }
@@ -62,7 +64,15 @@ export default function TopBar(props) {
         setAnchorEl(e.currentTarget)
         setOpen(true)
     }
-
+    const handleLogout = async () => {
+        try {
+          handleClose();
+          await logout();
+          history.push('/');
+        } catch (err) {
+          console.error(err);         
+        }
+      };
     const handleClose = (e) => {
         setAnchorEl(null)
         setOpen(false)
@@ -153,7 +163,7 @@ export default function TopBar(props) {
                     className={classes.tabContainter}
                     indicatorColor='secondary'
                     >
-                        <Tab component={Link} to="/" label="Lobby" />
+                        <Tab component={Link} to="/app/lobby" label="Lobby" />
                         <Tab component={Link} to="/app/agenda" label="Agenda" />
                         <Tab component={Link} to="/app/keynote" label="Keynote" />
                         <Tab component={Link} to="/app/exhibition" label="Exhibition" />
@@ -180,7 +190,7 @@ export default function TopBar(props) {
                     </div>
                     <Menu id="simple-menu" anchorEl={anchorEl} open={open} onClose={handleClose}>
                         <MenuItem onClick={handleClose} component={Link} to ="/app/profile">Profile</MenuItem>
-                        <MenuItem onClick={handleClose}>SignOut</MenuItem>
+                        <MenuItem onClick={handleLogout}>SignOut</MenuItem>
                     </Menu>
                 </Toolbar>
             </AppBar>

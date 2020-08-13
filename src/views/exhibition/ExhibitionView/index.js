@@ -14,9 +14,8 @@ const MAP = {
     areas: [
         { name: "Auditorium", shape: "rect", coords: [105,138,263,209], href: "/app/keynote"  },
         { name: "Resources", shape: "rect", coords: [364,288,499,368], href: "/app/resources"  },
-        { name: "Exhibition", shape: "rect", coords: [621,299,869,364], href: "/app/exhibition"  },
-        { name: "Networking", shape: "rect", coords: [1065,267,1212,327], href: "/app/networking"  },
-   
+        { name: "Exhibition", shape: "rect", coords: [621,299,869,364], href: "/app/exhibitor"  },
+        { name: "Networking", shape: "rect", coords: [1065,267,1212,327], href: "/app/networking"  },   
     ]
   }
 
