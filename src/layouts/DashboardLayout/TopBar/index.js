@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -21,8 +21,8 @@ import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { useParams } from 'react-router';
-import { useHistory } from 'react-router-dom';
+//import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router-dom';
 import useAuth from 'src/hooks/useAuth';
 
 const useStyles = makeStyles(theme => ({
@@ -56,10 +56,28 @@ export default function TopBar(props) {
     const [value, setValue] = useState(0);
     const { user, logout } = useAuth();
     const history = useHistory();
+
+    let params = useParams();    
     const handleChange = (e, value) => {
         setValue(value)
     }
-
+    useEffect(()=> {      
+        if (window.location.pathname === "/app/lobby" && value !== 0) {
+            setValue(0);
+        } else if (window.location.pathname === "/app/agenda" && value !== 1) {
+            setValue(1);
+        } else if (window.location.pathname === "/app/keynote" && value !== 2) {
+            setValue(2);
+        } else if (window.location.pathname === "/app/exhibition" && value !== 3) {
+            setValue(3);
+        } else if (window.location.pathname === "/app/networking" && value !== 4) {
+            setValue(4);
+        } else if (window.location.pathname === "/app/resources" && value !== 5) {
+            setValue(5);
+        }  else if (window.location.pathname === "/app/exhibitor" && value !== 3) {
+            setValue(3); 
+        }
+    }, [value]);
     const handleClick = (e) => {
         setAnchorEl(e.currentTarget)
         setOpen(true)

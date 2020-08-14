@@ -75,7 +75,7 @@ export default function AgendaView() {
             </CardContent>
             <CardActions>
             <Link>
-                <Button href="https://www.bigmarker.com/xporium/Webinar-13-August3-2020-08-13-03-15-pm?bmid=5bbdac0a0389" target="_blank" size="small" variant="contained" color="primary">Watch Now</Button></Link>
+                <Button href="https://www.bigmarker.com/xporium/Xporium-Demo?bmid=b0f384fa3336" target="_blank" size="small" variant="contained" color="primary">Watch Now</Button></Link>
             </CardActions>
         </Card>
     </Container>

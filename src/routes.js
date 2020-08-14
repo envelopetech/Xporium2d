@@ -87,7 +87,7 @@ const routes = [
     routes: [
       {
         exact: true,
-        path: '/app/lobby',
+        path: '/app/lobby/:id?',
         //component: LobbyView
         component: lazy(() => import('src/views/lobby/LobbyView'))
       },
